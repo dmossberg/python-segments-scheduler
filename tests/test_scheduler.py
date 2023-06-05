@@ -1,13 +1,16 @@
-from segment_scheduler.segment import *
-from segment_scheduler.scheduler import *
+"""Tests for the scheduler module."""
+from typing import List
 import pytest
+from segment_scheduler.segment import Segment
+from segment_scheduler.scheduler import find_minimum_points_in_time
+
 
 def test_challenge_case_one_point_in_time():
     # Arrange
-    segments = [Segment(1, 3), 
-                Segment(2, 5), 
+    segments = [Segment(1, 3),
+                Segment(2, 5),
                 Segment(3, 6)]
-    
+
     expected = [3]
 
     # Act
@@ -15,13 +18,14 @@ def test_challenge_case_one_point_in_time():
 
     # Assert
     assert actual == expected
-    
+
+
 def test_challenge_case_two_points_in_time():
     # Arrange
-    segments = [Segment(1, 3), 
-                Segment(2, 5), 
+    segments = [Segment(1, 3),
+                Segment(2, 5),
                 Segment(6, 7)]
-    
+
     expected = [3, 7]
 
     # Act
@@ -30,6 +34,7 @@ def test_challenge_case_two_points_in_time():
     # Assert
     assert actual == expected
 
+
 def test_no_overlapping_points():
     # Arrange
     segments = [
@@ -37,7 +42,7 @@ def test_no_overlapping_points():
         Segment(3, 4),
         Segment(5, 6),
     ]
-    
+
     expected = [2, 4, 6]
 
     # Act
@@ -45,6 +50,7 @@ def test_no_overlapping_points():
 
     # Assert
     assert actual == expected
+
 
 def test_no_overlapping_points_descending_order():
     # Arrange
@@ -53,7 +59,7 @@ def test_no_overlapping_points_descending_order():
         Segment(3, 4),
         Segment(1, 2),
     ]
-    
+
     expected = [2, 4, 6]
 
     # Act
@@ -61,6 +67,7 @@ def test_no_overlapping_points_descending_order():
 
     # Assert
     assert actual == expected
+
 
 def test_all_overlapping_segments():
     # Arrange
@@ -71,7 +78,7 @@ def test_all_overlapping_segments():
         Segment(4, 8),
         Segment(5, 9)
     ]
-    
+
     expected = [5]
 
     # Act
@@ -79,6 +86,7 @@ def test_all_overlapping_segments():
 
     # Assert
     assert actual == expected
+
 
 def test_same_high_value():
     # Arrange
@@ -89,7 +97,7 @@ def test_same_high_value():
         Segment(4, 5),
         Segment(5, 5)
     ]
-    
+
     expected = [5]
 
     # Act
@@ -97,6 +105,7 @@ def test_same_high_value():
 
     # Assert
     assert actual == expected
+
 
 def test_same_low_value():
     # Arrange
@@ -107,7 +116,7 @@ def test_same_low_value():
         Segment(1, 4),
         Segment(1, 5)
     ]
-    
+
     expected = [1]
 
     # Act
@@ -116,10 +125,11 @@ def test_same_low_value():
     # Assert
     assert actual == expected
 
-def test_empty_list(): 
+
+def test_empty_list():
     # Arrange
     segments = []
-    
+
     expected = []
 
     # Act
@@ -127,11 +137,12 @@ def test_empty_list():
 
     # Assert
     assert actual == expected
+
 
 def test_none_input():
     # Arrange
     segments = None
-    
+
     expected = []
 
     # Act
@@ -140,15 +151,16 @@ def test_none_input():
     # Assert
     assert actual == expected
 
+
 def test_list_of_invalid_type_raises_exception():
     # Arrange
-    segments: List[str] = ["1", "2", "3"] 
-    
+    segments: List[str] = ["1", "2", "3"]
+
     expected = TypeError
 
     # Act
     with pytest.raises(expected):
-      find_minimum_points_in_time(segments)
+        find_minimum_points_in_time(segments)
 
 
 def test_all_elements_have_valid_type():
@@ -160,9 +172,9 @@ def test_all_elements_have_valid_type():
         Segment(1, 4),
         Segment(1, 5)
     ]
-    
+
     expected = TypeError
 
     # Act
     with pytest.raises(expected):
-      find_minimum_points_in_time(segments)
+        find_minimum_points_in_time(segments)

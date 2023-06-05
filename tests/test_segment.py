@@ -1,5 +1,7 @@
-from segment_scheduler.segment import Segment
+"""Unit tests for the Segment class."""
 import pytest
+from segment_scheduler.segment import Segment
+
 
 def test_constructor_valid_input():
     # Arrange
@@ -12,6 +14,7 @@ def test_constructor_valid_input():
     assert isinstance(actual, expected)
     assert actual.start_time == 1
     assert actual.end_time == 3
+
 
 def test_constructor_invalid_input_types():
     # Arrange
@@ -35,6 +38,7 @@ def test_constructor_invalid_input_types():
 
     with pytest.raises(expected):
         Segment(1, None)
+
 
 def test_constructor_invalid_input_values():
     # Arrange
