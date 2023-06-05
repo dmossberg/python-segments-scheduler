@@ -1,11 +1,12 @@
-from segment_scheduler.segment import Segment
-from segment_scheduler.scheduler import find_minimum_points_in_time
+"""Profiler: find_minimum_points_in_time with large number of segments"""
 import cProfile
 import random
+from segment_scheduler.segment import Segment
+from segment_scheduler.scheduler import find_minimum_points_in_time
 
-def test_performance():
+if __name__ == "__main__":
     segments = []
-    for i in range(1000000):
+    for _ in range(1000000):
         r1 = random.randint(0, 100000)
         r2 = random.randint(0, 100000)
 
@@ -18,13 +19,9 @@ def test_performance():
     pr = cProfile.Profile()
     pr.enable()
 
-    actual = find_minimum_points_in_time(segments)
+    points_in_time = find_minimum_points_in_time(segments)
 
     pr.disable()
     pr.print_stats(sort='cumtime')
 
-    print(actual)
-    print(f"Minimum number of points in time: {len(actual)}")
-
-if __name__ == "__main__":
-    test_performance()
+    print(f"{points_in_time} (length of time points: {len(points_in_time)})")

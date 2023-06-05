@@ -1,9 +1,9 @@
+"""Find the minimum number of points in time in a list of segments"""
 from segment_scheduler.segment import Segment
 from segment_scheduler.scheduler import find_minimum_points_in_time
 
-import segment_scheduler
 
-def main():
+if __name__ == "__main__":
     segments = [
         Segment(41, 42),
         Segment(52, 52),
@@ -105,11 +105,7 @@ def main():
         Segment(49, 51),
         Segment(63, 64),
         Segment(54, 54)]
-    
+
     points_in_time = find_minimum_points_in_time(segments)
 
-    print(points_in_time)
-    print(f"Minimum number of points in time: {len(points_in_time)}")
-
-if __name__ == "__main__":
-    main()
+    print(f"{points_in_time} (length of time points: {len(points_in_time)})")
