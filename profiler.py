@@ -1,10 +1,14 @@
 """Profiler: find_minimum_points_in_time with large number of segments"""
 import cProfile
+import logging
 import random
 from segment_scheduler.segment import Segment
 from segment_scheduler.scheduler import find_minimum_points_in_time
 
+
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
+
     segments = []
     for _ in range(1000000):
         r1 = random.randint(0, 100000)

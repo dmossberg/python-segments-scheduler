@@ -1,9 +1,12 @@
 """Find the minimum number of points in time in a list of segments"""
+import logging
 from segment_scheduler.segment import Segment
 from segment_scheduler.scheduler import find_minimum_points_in_time
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+
     segments = [
         Segment(41, 42),
         Segment(52, 52),
